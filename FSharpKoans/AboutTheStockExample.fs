@@ -58,8 +58,31 @@ module ``about the stock example`` =
     // tests for yourself along the way. You can also try 
     // using the F# Interactive window to check your progress.
 
+
+    let splitCommas (x:string) =
+           x.Split([|','|])
+
+    
+    let differenceSorter (row: string[]) = 
+        let openValue = System.Double.Parse row.[1]
+        let closeValue = System.Double.Parse row.[4]
+        abs (openValue - closeValue)
+    
+    let greatestDifferenceRow = stockData
+                                |> List.tail
+                                |> List.map splitCommas
+                                |> List.maxBy (differenceSorter)
+
+    let result = greatestDifferenceRow.[0]
+
+  
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let result = result
         
         AssertEquality "2012-03-13" result
+
+
+
+
+
